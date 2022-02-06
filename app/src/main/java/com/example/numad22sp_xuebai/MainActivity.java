@@ -14,10 +14,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // add a button
-        Button btn = findViewById(R.id.button2);
+        // add a btnClicky
+        Button btnAboutMe = findViewById(R.id.btnAbout);
         // action onClick to display some text
-        btn.setOnClickListener(new View.OnClickListener() {
+        btnAboutMe.setOnClickListener(new View.OnClickListener() {
             // abstract class
             @Override
             public void onClick(View view) {
