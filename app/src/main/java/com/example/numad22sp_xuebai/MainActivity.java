@@ -40,8 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btnAbout:
-                Toast.makeText(MainActivity.this, "Hi! My name is Xue Bai and you can contact me" +
-                        "at bai.xue1@northeastern.edu. Nice to meet you!", Toast.LENGTH_SHORT).show();
+                Intent itnt = new Intent(this, AboutMeActivity.class);
+                startActivity(itnt);
+//                Toast.makeText(MainActivity.this, "Hi! My name is Xue Bai and you can contact me" +
+//                        "at bai.xue1@northeastern.edu. Nice to meet you!", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btnClicky:
                 // start a new activity after clicking a button
