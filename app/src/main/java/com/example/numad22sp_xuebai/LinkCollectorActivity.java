@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.URLUtil;
@@ -17,7 +19,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class LinkCollectorActivity extends AppCompatActivity implements LinkInputDialog.LinkDialogListener {
+public class LinkCollectorActivity extends AppCompatActivity implements LinkInputDialog.LinkDialogListener, LinkAdapter.linkClickListener {
     private RecyclerView recyclerView; // xml in layout
     // adapter:bridge between the data (arraylist) and the recyclerView
     // performance improve
@@ -68,7 +70,7 @@ public class LinkCollectorActivity extends AppCompatActivity implements LinkInpu
         // no matter how many items in the list, set to fixed size to improve performance
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        adapter = new LinkAdapter(linkArrayList);
+        adapter = new LinkAdapter(linkArrayList, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
@@ -122,4 +124,11 @@ public class LinkCollectorActivity extends AppCompatActivity implements LinkInpu
         }
     }
 
+    @Override
+    public void linkOnClick(int position) {
+        Link link = linkArrayList.get(position);
+        Uri uri = Uri.parse(link.getUrl());
+        // open the url from the clicked link
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
+    }
 }

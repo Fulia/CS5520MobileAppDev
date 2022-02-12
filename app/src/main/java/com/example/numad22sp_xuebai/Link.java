@@ -1,6 +1,8 @@
 package com.example.numad22sp_xuebai;
 
-public class Link {
+import android.view.View;
+
+public class Link{
     private String linkName;
     private String url;
 
@@ -16,5 +18,6 @@ public class Link {
     public String getUrl(){
         return url;
     }
+
 
 }

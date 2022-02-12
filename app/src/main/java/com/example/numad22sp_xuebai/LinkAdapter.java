@@ -13,28 +13,41 @@ import java.util.ArrayList;
 // adapter: to bind data from data set to views
 public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.LinkViewHolder> {
     private ArrayList<Link> linkArrayList;
+    private linkClickListener linkClickLstr;
 
-    public LinkAdapter(ArrayList<Link> linkList){
+    public LinkAdapter(ArrayList<Link> linkList, linkClickListener listener){
         linkArrayList = linkList;
+        linkClickLstr = listener;
     }
 
 
-    // to hold the link_card view
-    public static class LinkViewHolder extends RecyclerView.ViewHolder{
-        public TextView nameView;
-        public TextView urlView;
-        public LinkViewHolder(View itemView) {
+    // create holder to hold the link_card view
+    public static class LinkViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        private TextView nameView;
+        private TextView urlView;
+        private linkClickListener linkClickListener;
+
+        public LinkViewHolder(View itemView, LinkAdapter.linkClickListener linkClickListener) {
             super(itemView);
             nameView = itemView.findViewById(R.id.linkName);
             urlView = itemView.findViewById(R.id.linkURL);
+            this.linkClickListener = linkClickListener;
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            // get the position of the clicked view by getAdapterPosition()
+            linkClickListener.linkOnClick(getAdapterPosition());
         }
     }
 
 
     @Override
     public LinkViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // onClick listener is for link_card view, so the onclicklistener should be implemented here not in Link
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.link_card, parent, false);
-        LinkViewHolder lvh = new LinkViewHolder(view);
+        LinkViewHolder lvh = new LinkViewHolder(view, linkClickLstr);
         return lvh;
     }
 
@@ -50,6 +63,10 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.LinkViewHolder
     @Override
     public int getItemCount() {
         return linkArrayList.size();
+    }
+
+    public interface linkClickListener{
+        void linkOnClick(int position);
     }
 
 
