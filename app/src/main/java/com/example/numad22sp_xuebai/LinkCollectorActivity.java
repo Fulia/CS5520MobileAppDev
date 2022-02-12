@@ -6,7 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -24,6 +28,7 @@ public class LinkCollectorActivity extends AppCompatActivity implements LinkInpu
     private ArrayList<Link> linkArrayList;
     // floating button
     private Button floatButton;
+    private View v;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,7 @@ public class LinkCollectorActivity extends AppCompatActivity implements LinkInpu
 
         createLinkList();
         buildRecyclerView();
+        v = findViewById(R.id.linkCollectorLayout);
 
         floatButton = findViewById(R.id.addLinkBtn);
         // clicking on the add link button will open the dialog for input
@@ -71,31 +77,49 @@ public class LinkCollectorActivity extends AppCompatActivity implements LinkInpu
 
     @Override
     public void applyInputs(String Name, String URL) {
-        if (urlValidation(URL)) {
+        // check if the input url is valid and reachable
+        if (URLUtil.isValidUrl(URL)) {
             Link newLink = new Link(Name, URL);
+//            Toast.makeText(this, "new link created", Toast.LENGTH_SHORT).show();
             linkArrayList.add(newLink);
             adapter.notifyDataSetChanged();
+            showSnackbar(true);
             // notify + success notice
         }else{
-
+            showSnackbar(false);
+//            Toast.makeText(this, "Invalid url", Toast.LENGTH_SHORT).show();
         }
     }
 
-    // check if the input url is valid and reachable
-    public boolean urlValidation(String urlString) {
-        try{
-            URL url = new URL(urlString);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-            connection.setConnectTimeout(3000);
-            connection.connect();
 
-            int code = connection.getResponseCode();
-            return code == 200;
+//    public boolean urlValidation(String urlString) {
+////        try{
+////            URL url = new URL(urlString);
+////            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+////            connection.setRequestMethod("GET");
+////            connection.setConnectTimeout(3000);
+////            connection.connect();
+////
+////            int code = connection.getResponseCode();
+////            return code == 200;
+////
+////        } catch (IOException e){
+////            return false;
+////        }
+//        return URLUtil.isValidUrl(urlString);
+//
+//    }
 
-        } catch (IOException e){
-            return false;
+
+    // show different snackbars per validation result of input URL
+    public void showSnackbar(boolean succeeded){
+        if (succeeded){
+            Snackbar snkbar1 = Snackbar.make(v, "A new link was successfully added!", Snackbar.LENGTH_LONG);
+            snkbar1.show();
+        }else{
+            Snackbar snkbar2 = Snackbar.make(v, "Invalid URL. Try again.", Snackbar.LENGTH_LONG);
+            snkbar2.show();
         }
-
     }
+
 }
