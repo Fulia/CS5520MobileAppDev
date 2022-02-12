@@ -10,16 +10,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.URLUtil;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
-public class LinkCollectorActivity extends AppCompatActivity implements LinkInputDialog.LinkDialogListener, LinkAdapter.linkClickListener {
+public class LinkCollectorActivity extends AppCompatActivity implements LinkInputDialog.LinkDialogListener, LinkAdapter.LinkClickListener {
     private RecyclerView recyclerView; // xml in layout
     // adapter:bridge between the data (arraylist) and the recyclerView
     // performance improve

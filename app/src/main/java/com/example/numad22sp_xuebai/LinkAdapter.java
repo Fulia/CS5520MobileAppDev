@@ -13,9 +13,9 @@ import java.util.ArrayList;
 // adapter: to bind data from data set to views
 public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.LinkViewHolder> {
     private ArrayList<Link> linkArrayList;
-    private linkClickListener linkClickLstr;
+    private LinkClickListener linkClickLstr;
 
-    public LinkAdapter(ArrayList<Link> linkList, linkClickListener listener){
+    public LinkAdapter(ArrayList<Link> linkList, LinkClickListener listener){
         linkArrayList = linkList;
         linkClickLstr = listener;
     }
@@ -25,9 +25,9 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.LinkViewHolder
     public static class LinkViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView nameView;
         private TextView urlView;
-        private linkClickListener linkClickListener;
+        private LinkClickListener linkClickListener;
 
-        public LinkViewHolder(View itemView, LinkAdapter.linkClickListener linkClickListener) {
+        public LinkViewHolder(View itemView, LinkClickListener linkClickListener) {
             super(itemView);
             nameView = itemView.findViewById(R.id.linkName);
             urlView = itemView.findViewById(R.id.linkURL);
@@ -53,7 +53,7 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.LinkViewHolder
 
     // pass data to the view in holder through the binding action
     @Override
-    public void onBindViewHolder( LinkAdapter.LinkViewHolder holder, int position) {
+    public void onBindViewHolder(LinkAdapter.LinkViewHolder holder, int position) {
         Link currentLink = linkArrayList.get(position);
         holder.nameView.setText(currentLink.getLinkName());
         holder.urlView.setText(currentLink.getUrl());
@@ -65,7 +65,7 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.LinkViewHolder
         return linkArrayList.size();
     }
 
-    public interface linkClickListener{
+    public interface LinkClickListener {
         void linkOnClick(int position);
     }
 
