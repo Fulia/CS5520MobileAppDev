@@ -24,6 +24,7 @@ public class ClickyActivity extends AppCompatActivity implements View.OnClickLis
         Button btnE = findViewById(R.id.btnE);
         Button btnF = findViewById(R.id.btnF);
 
+
         btnA.setOnClickListener(this);
         btnB.setOnClickListener(this);
         btnC.setOnClickListener(this);
@@ -34,6 +35,7 @@ public class ClickyActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    // the textview will show different content per the button pressed
     @Override
     public void onClick(View view) {
         switch (view.getId()){
