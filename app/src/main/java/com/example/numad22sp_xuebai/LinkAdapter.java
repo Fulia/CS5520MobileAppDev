@@ -4,8 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.LinkViewHolder
         linkArrayList = linkList;
         linkClickLstr = listener;
     }
-
 
     // create holder to hold the link_card view
     public class LinkViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -43,6 +41,7 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.LinkViewHolder
     }
 
 
+    @NonNull
     @Override
     public LinkViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // onClick listener is for link_card view, so the onclicklistener should be implemented here not in Link
