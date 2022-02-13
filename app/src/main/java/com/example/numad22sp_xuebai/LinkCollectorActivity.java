@@ -120,7 +120,7 @@ public class LinkCollectorActivity extends AppCompatActivity implements LinkInpu
         }
     }
 
-    @Override
+    // @Override
     public void linkOnClick(int position) {
         Link link = linkArrayList.get(position);
         Uri uri = Uri.parse(link.getUrl());

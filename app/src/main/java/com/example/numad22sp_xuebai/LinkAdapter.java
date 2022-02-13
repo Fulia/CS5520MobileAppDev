@@ -22,7 +22,7 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.LinkViewHolder
 
 
     // create holder to hold the link_card view
-    public static class LinkViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class LinkViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView nameView;
         private TextView urlView;
         private LinkClickListener linkClickListener;
@@ -53,7 +53,7 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.LinkViewHolder
 
     // pass data to the view in holder through the binding action
     @Override
-    public void onBindViewHolder(LinkAdapter.LinkViewHolder holder, int position) {
+    public void onBindViewHolder( LinkAdapter.LinkViewHolder holder, int position) {
         Link currentLink = linkArrayList.get(position);
         holder.nameView.setText(currentLink.getLinkName());
         holder.urlView.setText(currentLink.getUrl());
@@ -65,6 +65,10 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.LinkViewHolder
         return linkArrayList.size();
     }
 
+    // Why we need the LinkCollectorActivity implements this listener interface:
+    // click action happens in the LinkCollectorActivity and will need to be passed into the adapter
+    // so that the card-view's listener can use it. Passing in the activity itself is not safe. Passing
+    // it under the cover of listener is safer???
     public interface LinkClickListener {
         void linkOnClick(int position);
     }
