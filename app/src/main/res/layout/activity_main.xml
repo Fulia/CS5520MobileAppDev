@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/mainLayout">
 
     <TextView
         android:id="@+id/textView"
@@ -16,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.821" />
+        app:layout_constraintVertical_bias="0.784" />
 
     <Button
         android:id="@+id/btnAbout"
@@ -41,17 +42,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.322" />
 
     <Button
         android:id="@+id/btnLinkCollector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Link Collector"
+        android:text="@string/link_collector"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnClicky"
+        app:layout_constraintVertical_bias="0.058" />
+
+    <Button
+        android:id="@+id/btnLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/get_location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnClicky"
-        app:layout_constraintVertical_bias="0.178" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLinkCollector"
+        app:layout_constraintVertical_bias="0.078" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

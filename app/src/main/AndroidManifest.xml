@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.numad22sp_xuebai">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_intro"
@@ -9,13 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_intro_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NUMAD22Sp_XueBai">
-        <activity android:name=".LinkCollectorActivity"
-            android:configChanges="screenSize|orientation"
-            />
+        <activity android:name=".ShowLocation"></activity>
+        <activity
+            android:name=".LinkCollectorActivity"
+            android:configChanges="screenSize|orientation" />
         <activity android:name=".AboutMeActivity" />
         <activity android:name=".ClickyActivity" />
         <activity
-
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
