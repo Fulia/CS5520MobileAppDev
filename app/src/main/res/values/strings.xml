@@ -10,4 +10,9 @@
     <string name="f">F</string>
     <string name="pressed">Pressed: - </string>
     <string name="add_link">add link</string>
+    <string name="link_collector">Link Collector</string>
+    <string name="get_location">Get Location</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="current_location">Current Location</string>
 </resources>
