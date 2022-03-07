@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -27,6 +28,7 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
 
     private ImageView mImageView;
     private Button mRandomButton;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,8 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
 
         mImageView = findViewById(R.id.imageResult);
         mRandomButton = findViewById(R.id.btnRandomWebService);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
 
         mRandomButton.setOnClickListener(this);
     }
@@ -45,6 +49,7 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
         switch (view.getId()) {
             // action for About Me button
             case R.id.btnRandomWebService:
+                progressBar.setVisibility(View.VISIBLE);
                 getRandomDog task = new getRandomDog();
                 String url = "https://dog.ceo/api/breeds/image/random";
                 task.execute(url);
@@ -55,26 +60,17 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-//    public void callWebserviceButtonHandler(View view){
-//        PingWebServiceTask task = new PingWebServiceTask();
-//        try {
-//            String url = "https://dog.ceo/api/breeds/image/random";
-//            task.execute(url);
-//        } catch (NetworkUtil.MyException e) {
-//            Toast.makeText(getApplication(),e.toString(),Toast.LENGTH_SHORT).show();
-//        }
-//
-//    }
 
 
     // Google is deprecating Android AsyncTask API in Android 11 and suggesting to use java.util.concurrent
     @SuppressLint("StaticFieldLeak")
     private class getRandomDog extends AsyncTask<String, Integer, JSONObject> {
 
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            Log.i(TAG, "Making progress...");
-        }
+//        @Override
+//        protected void onProgressUpdate(Integer... values) {
+////            Log.i(TAG, "Making progress...");
+//            progressBar.isShown();
+//        }
 
         @Override
         protected JSONObject doInBackground(String... params) {
@@ -115,12 +111,14 @@ public class WebServiceActivity extends AppCompatActivity implements View.OnClic
         @Override
         protected void onPostExecute(JSONObject jObject) {
             super.onPostExecute(jObject);
-            try {
-                String imgURL = jObject.getString("message");
-                System.out.println(imgURL);
-                Picasso.get().setLoggingEnabled(true);
-                Picasso.get().load(imgURL).resize(800, 800).into(mImageView);
 
+            try {
+
+                String imgURL = jObject.getString("message");
+//                System.out.println(imgURL);
+//                Picasso.get().setLoggingEnabled(true);
+                Picasso.get().load(imgURL).resize(800, 800).into(mImageView);
+                progressBar.setVisibility(View.GONE);
             } catch (JSONException e) {
                 Toast.makeText(WebServiceActivity.this, "Something went wrong.Try again.", Toast.LENGTH_SHORT).show();
             }
