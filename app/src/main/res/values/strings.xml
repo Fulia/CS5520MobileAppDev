@@ -15,4 +15,8 @@
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
     <string name="current_location">Current Location</string>
+    <string name="press_the_button_get_a_random_dog">Press the button. Get a random dog!</string>
+    <string name="random">Random</string>
+    <string name="photo_of_a_random_dog">Photo of a random dog</string>
+    <string name="web_service">Web Service</string>
 </resources>

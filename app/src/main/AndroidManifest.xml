@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="com.example.numad22sp_xuebai">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_intro_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NUMAD22Sp_XueBai">
-        <activity android:name=".ShowLocation"></activity>
+        <activity android:name=".WebServiceActivity"
+            android:configChanges="screenSize|orientation"></activity>
+        <activity android:name=".ShowLocation" />
         <activity
             android:name=".LinkCollectorActivity"
             android:configChanges="screenSize|orientation" />
