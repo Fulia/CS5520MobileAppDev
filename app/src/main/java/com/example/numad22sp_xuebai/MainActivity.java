@@ -13,7 +13,6 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationRequest;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -21,7 +20,6 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.CancellationTokenSource;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -45,12 +43,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button btnLink = findViewById(R.id.btnLinkCollector);
 
         Button btnLocation = findViewById(R.id.btnLocation);
+        Button btnWebService = findViewById(R.id.btnWebService);
 
         // onClick listeners for each button
         btnAboutMe.setOnClickListener(this);
         btnClicky.setOnClickListener(this);
         btnLink.setOnClickListener(this);
         btnLocation.setOnClickListener(this);
+        btnWebService.setOnClickListener(this);
 
     }
 
@@ -89,6 +89,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                    intent3.putStringArrayListExtra("Location", coordinates);
 //                    startActivity(intent3);
 //                }
+                break;
+            case R.id.btnWebService:
+                Intent intent3 = new Intent(this, WebServiceActivity.class);
+                startActivity(intent3);
                 break;
 
 
